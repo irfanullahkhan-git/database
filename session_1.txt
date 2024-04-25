@@ -1,0 +1,184 @@
+Microsoft Windows [Version 10.0.22621.3447]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\wamp64\bin\mysql\mysql8.0.31\bin>mysql -u root -p
+Enter password:
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 8
+Server version: 8.0.31 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| gdc_database       |
+| gdc_new            |
+| information_schema |
+| my_database        |
+| mysql              |
+| performance_schema |
+| students           |
+| sys                |
++--------------------+
+8 rows in set (0.03 sec)
+
+mysql> create database sms
+    -> ;
+Query OK, 1 row affected (0.02 sec)
+
+mysql> use sms
+Database changed
+mysql> show tables;
+Empty set (0.02 sec)
+
+mysql> create table students(id int, name varchar(190), class_number varchar(20), phonenumber
+varchar(20));
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> show tables;
++---------------+
+| Tables_in_sms |
++---------------+
+| students      |
++---------------+
+1 row in set (0.00 sec)
+
+mysql> desc students;
++--------------+--------------+------+-----+---------+-------+
+| Field        | Type         | Null | Key | Default | Extra |
++--------------+--------------+------+-----+---------+-------+
+| id           | int          | YES  |     | NULL    |       |
+| name         | varchar(190) | YES  |     | NULL    |       |
+| class_number | varchar(20)  | YES  |     | NULL    |       |
+| phonenumber  | varchar(20)  | YES  |     | NULL    |       |
++--------------+--------------+------+-----+---------+-------+
+4 rows in set (0.01 sec)
+
+mysql> INSERT INTO students(id, name, class_number, phonenumber) VALUES(1, "Nasir", "CS-21/201", "03149600345");
+Query OK, 1 row affected (0.02 sec)
+
+mysql> INSERT INTO students(id, name, class_number, phonenumber) VALUES(2, "Adil Ali", "CS-21/202", "03149029569");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> SELECT * FROM students;
++------+----------+--------------+-------------+
+| id   | name     | class_number | phonenumber |
++------+----------+--------------+-------------+
+|    1 | Nasir    | CS-21/201    | 03149600345 |
+|    2 | Adil Ali | CS-21/202    | 03149029569 |
++------+----------+--------------+-------------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT name FROM students;
++----------+
+| name     |
++----------+
+| Nasir    |
+| Adil Ali |
++----------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT name, class_number FROM students;
++----------+--------------+
+| name     | class_number |
++----------+--------------+
+| Nasir    | CS-21/201    |
+| Adil Ali | CS-21/202    |
++----------+--------------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT * FROM students;
++------+----------+--------------+-------------+
+| id   | name     | class_number | phonenumber |
++------+----------+--------------+-------------+
+|    1 | Nasir    | CS-21/201    | 03149600345 |
+|    2 | Adil Ali | CS-21/202    | 03149029569 |
++------+----------+--------------+-------------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT * from students ORDER BY id;
++------+----------+--------------+-------------+
+| id   | name     | class_number | phonenumber |
++------+----------+--------------+-------------+
+|    1 | Nasir    | CS-21/201    | 03149600345 |
+|    2 | Adil Ali | CS-21/202    | 03149029569 |
++------+----------+--------------+-------------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT * from students ORDER BY id DESC;
++------+----------+--------------+-------------+
+| id   | name     | class_number | phonenumber |
++------+----------+--------------+-------------+
+|    2 | Adil Ali | CS-21/202    | 03149029569 |
+|    1 | Nasir    | CS-21/201    | 03149600345 |
++------+----------+--------------+-------------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT * from students ORDER BY name;
++------+----------+--------------+-------------+
+| id   | name     | class_number | phonenumber |
++------+----------+--------------+-------------+
+|    2 | Adil Ali | CS-21/202    | 03149029569 |
+|    1 | Nasir    | CS-21/201    | 03149600345 |
++------+----------+--------------+-------------+
+2 rows in set (0.01 sec)
+
+mysql> SELECT * from students ORDER BY name ASC;
++------+----------+--------------+-------------+
+| id   | name     | class_number | phonenumber |
++------+----------+--------------+-------------+
+|    2 | Adil Ali | CS-21/202    | 03149029569 |
+|    1 | Nasir    | CS-21/201    | 03149600345 |
++------+----------+--------------+-------------+
+2 rows in set (0.00 sec)
+
+mysql> INSERT INTO students(id, name, class_number, phonenumber) VALUES(3, "Adil Ali", "CS-21/203", "031452525458");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> SELECT * from students;
++------+----------+--------------+--------------+
+| id   | name     | class_number | phonenumber  |
++------+----------+--------------+--------------+
+|    1 | Nasir    | CS-21/201    | 03149600345  |
+|    2 | Adil Ali | CS-21/202    | 03149029569  |
+|    3 | Adil Ali | CS-21/203    | 031452525458 |
++------+----------+--------------+--------------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT * from students ORDER BY name ASC;
++------+----------+--------------+--------------+
+| id   | name     | class_number | phonenumber  |
++------+----------+--------------+--------------+
+|    2 | Adil Ali | CS-21/202    | 03149029569  |
+|    3 | Adil Ali | CS-21/203    | 031452525458 |
+|    1 | Nasir    | CS-21/201    | 03149600345  |
++------+----------+--------------+--------------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT * from students ORDER BY name ASC, id DESC;
++------+----------+--------------+--------------+
+| id   | name     | class_number | phonenumber  |
++------+----------+--------------+--------------+
+|    3 | Adil Ali | CS-21/203    | 031452525458 |
+|    2 | Adil Ali | CS-21/202    | 03149029569  |
+|    1 | Nasir    | CS-21/201    | 03149600345  |
++------+----------+--------------+--------------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT COUNT(*) FROM students;
++----------+
+| COUNT(*) |
++----------+
+|        3 |
++----------+
+1 row in set (0.01 sec)
+
+mysql>
