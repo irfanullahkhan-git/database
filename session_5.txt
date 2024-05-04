@@ -1,0 +1,568 @@
+Microsoft Windows [Version 10.0.22621.3447]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\wamp64\bin\mysql\mysql8.0.31\bin>mysql -u root -p
+Enter password:
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 8
+Server version: 8.0.31 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| gdc_database       |
+| gdc_new            |
+| information_schema |
+| my_database        |
+| mysql              |
+| performance_schema |
+| sms                |
+| students           |
+| sys                |
++--------------------+
+9 rows in set (0.02 sec)
+
+mysql> create database college;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| college            |
+| gdc_database       |
+| gdc_new            |
+| information_schema |
+| my_database        |
+| mysql              |
+| performance_schema |
+| sms                |
+| students           |
+| sys                |
++--------------------+
+10 rows in set (0.00 sec)
+
+mysql> select database();
++------------+
+| database() |
++------------+
+| NULL       |
++------------+
+1 row in set (0.00 sec)
+
+mysql> use college;
+Database changed
+mysql> select database();
++------------+
+| database() |
++------------+
+| college    |
++------------+
+1 row in set (0.00 sec)
+
+mysql> CREATE TABLE students (id INT, name VARCHAR(180), class_number VARCHAR(30), phone VARCHAR(20), de
+partment VARCHAR(30));
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> show tables;
++-------------------+
+| Tables_in_college |
++-------------------+
+| students          |
++-------------------+
+1 row in set (0.01 sec)
+
+mysql> DESC students;
++--------------+--------------+------+-----+---------+-------+
+| Field        | Type         | Null | Key | Default | Extra |
++--------------+--------------+------+-----+---------+-------+
+| id           | int          | YES  |     | NULL    |       |
+| name         | varchar(180) | YES  |     | NULL    |       |
+| class_number | varchar(30)  | YES  |     | NULL    |       |
+| phone        | varchar(20)  | YES  |     | NULL    |       |
+| department   | varchar(30)  | YES  |     | NULL    |       |
++--------------+--------------+------+-----+---------+-------+
+5 rows in set (0.01 sec)
+
+mysql> ALTER TABLE students ADD COLUMN gender CHAR;
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESC students;
++--------------+--------------+------+-----+---------+-------+
+| Field        | Type         | Null | Key | Default | Extra |
++--------------+--------------+------+-----+---------+-------+
+| id           | int          | YES  |     | NULL    |       |
+| name         | varchar(180) | YES  |     | NULL    |       |
+| class_number | varchar(30)  | YES  |     | NULL    |       |
+| phone        | varchar(20)  | YES  |     | NULL    |       |
+| department   | varchar(30)  | YES  |     | NULL    |       |
+| gender       | char(1)      | YES  |     | NULL    |       |
++--------------+--------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> INSERT INTO students (1, "Zahid", "CS-112", "03129876543", "Computer Science", "M");
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '1, "Zahid", "CS-112", "03129876543", "Computer Science", "M")' at line 1
+mysql> INSERT INTO students VALUES(1, "Zahid", "CS-112", "03129876543", "Computer Science", "M");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO students VALUES(2, "Hamza", "CS-113", "03129876475", "Computer Science", "M");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO students VALUES(3, "Imran", "BT-104", "0312945775", "Botany", "M");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> SELECT * FROM students;
++------+-------+--------------+-------------+------------------+--------+
+| id   | name  | class_number | phone       | department       | gender |
++------+-------+--------------+-------------+------------------+--------+
+|    1 | Zahid | CS-112       | 03129876543 | Computer Science | M      |
+|    2 | Hamza | CS-113       | 03129876475 | Computer Science | M      |
+|    3 | Imran | BT-104       | 0312945775  | Botany           | M      |
++------+-------+--------------+-------------+------------------+--------+
+3 rows in set (0.01 sec)
+
+mysql> ALTER TABLE students MODIFY COLUMN id INT AUTO_INCREMENT;
+ERROR 1075 (42000): Incorrect table definition; there can be only one auto column and it must be defined as a key
+mysql> ALTER TABLE students MODIFY COLUMN id INT AUTO INCREMENT;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AUTO INCREMENT' at line 1
+mysql> ALTER TABLE students MODIFY COLUMN id INT PRIMARY AUTO_INCREMENT;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AUTO_INCREMENT' at line 1
+mysql> ALTER TABLE students MODIFY COLUMN id INT PRIMARY KEY AUTO_INCREMENT;
+Query OK, 3 rows affected (0.02 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> INSERT INTO students(name, class_number, phone, department, gender) VALUES("Imran", "BT-104", "03
+12945775", "Botany", "M");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> SELECT * FROM students;
++----+-------+--------------+-------------+------------------+--------+
+| id | name  | class_number | phone       | department       | gender |
++----+-------+--------------+-------------+------------------+--------+
+|  1 | Zahid | CS-112       | 03129876543 | Computer Science | M      |
+|  2 | Hamza | CS-113       | 03129876475 | Computer Science | M      |
+|  3 | Imran | BT-104       | 0312945775  | Botany           | M      |
+|  4 | Imran | BT-104       | 0312945775  | Botany           | M      |
++----+-------+--------------+-------------+------------------+--------+
+4 rows in set (0.00 sec)
+
+mysql> INSERT INTO students VALUES(NULL, "Imran", "BT-104", "0312945775", "Botany", "M");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> SELECT * FROM students;
++----+-------+--------------+-------------+------------------+--------+
+| id | name  | class_number | phone       | department       | gender |
++----+-------+--------------+-------------+------------------+--------+
+|  1 | Zahid | CS-112       | 03129876543 | Computer Science | M      |
+|  2 | Hamza | CS-113       | 03129876475 | Computer Science | M      |
+|  3 | Imran | BT-104       | 0312945775  | Botany           | M      |
+|  4 | Imran | BT-104       | 0312945775  | Botany           | M      |
+|  5 | Imran | BT-104       | 0312945775  | Botany           | M      |
++----+-------+--------------+-------------+------------------+--------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT department, COUNT(*) FROM students GROUP BY department;
++------------------+----------+
+| department       | COUNT(*) |
++------------------+----------+
+| Computer Science |        2 |
+| Botany           |        3 |
++------------------+----------+
+2 rows in set (0.01 sec)
+
+mysql> SELECT department FROM students GROUP BY department;
++------------------+
+| department       |
++------------------+
+| Computer Science |
+| Botany           |
++------------------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT DISTINCT department FROM students;
++------------------+
+| department       |
++------------------+
+| Computer Science |
+| Botany           |
++------------------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT COUNT(department) FROM students;
++-------------------+
+| COUNT(department) |
++-------------------+
+|                 5 |
++-------------------+
+1 row in set (0.01 sec)
+
+mysql> SELECT COUNT(department) FROM students GROUP BY department;
++-------------------+
+| COUNT(department) |
++-------------------+
+|                 2 |
+|                 3 |
++-------------------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT COUNT(DISTINCT department) FROM students;
++----------------------------+
+| COUNT(DISTINCT department) |
++----------------------------+
+|                          2 |
++----------------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT * FROM students;
++----+-------+--------------+-------------+------------------+--------+
+| id | name  | class_number | phone       | department       | gender |
++----+-------+--------------+-------------+------------------+--------+
+|  1 | Zahid | CS-112       | 03129876543 | Computer Science | M      |
+|  2 | Hamza | CS-113       | 03129876475 | Computer Science | M      |
+|  3 | Imran | BT-104       | 0312945775  | Botany           | M      |
+|  4 | Imran | BT-104       | 0312945775  | Botany           | M      |
+|  5 | Imran | BT-104       | 0312945775  | Botany           | M      |
++----+-------+--------------+-------------+------------------+--------+
+5 rows in set (0.00 sec)
+
+mysql> UPDATE students SET name = "Uzair", class_number = "EN-107", phone = "03125478214", department="English" WHERE id = 4;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> SELECT * FROM students;
++----+-------+--------------+-------------+------------------+--------+
+| id | name  | class_number | phone       | department       | gender |
++----+-------+--------------+-------------+------------------+--------+
+|  1 | Zahid | CS-112       | 03129876543 | Computer Science | M      |
+|  2 | Hamza | CS-113       | 03129876475 | Computer Science | M      |
+|  3 | Imran | BT-104       | 0312945775  | Botany           | M      |
+|  4 | Uzair | EN-107       | 03125478214 | English          | M      |
+|  5 | Imran | BT-104       | 0312945775  | Botany           | M      |
++----+-------+--------------+-------------+------------------+--------+
+5 rows in set (0.00 sec)
+
+mysql> DELETE FROM students WHERE id = 5;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> SELECT * FROM students;
++----+-------+--------------+-------------+------------------+--------+
+| id | name  | class_number | phone       | department       | gender |
++----+-------+--------------+-------------+------------------+--------+
+|  1 | Zahid | CS-112       | 03129876543 | Computer Science | M      |
+|  2 | Hamza | CS-113       | 03129876475 | Computer Science | M      |
+|  3 | Imran | BT-104       | 0312945775  | Botany           | M      |
+|  4 | Uzair | EN-107       | 03125478214 | English          | M      |
++----+-------+--------------+-------------+------------------+--------+
+4 rows in set (0.00 sec)
+
+mysql> INSERT INTO students VALUES(NULL, "Imran", "BT-104", "0312945775", "Botany", "M");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> SELECT * FROM students;
++----+-------+--------------+-------------+------------------+--------+
+| id | name  | class_number | phone       | department       | gender |
++----+-------+--------------+-------------+------------------+--------+
+|  1 | Zahid | CS-112       | 03129876543 | Computer Science | M      |
+|  2 | Hamza | CS-113       | 03129876475 | Computer Science | M      |
+|  3 | Imran | BT-104       | 0312945775  | Botany           | M      |
+|  4 | Uzair | EN-107       | 03125478214 | English          | M      |
+|  6 | Imran | BT-104       | 0312945775  | Botany           | M      |
++----+-------+--------------+-------------+------------------+--------+
+5 rows in set (0.00 sec)
+
+mysql> INSERT INTO students(name, class_number, phone, department, gender) VALUES("Imran", "BT-104", "0312945775", "Botany", "M");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO students(name, class_number, phone, department, gender) VALUES("Imran", "BT-104", "0312945775", "Botany", "M");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> SELECT * FROM students;
++----+-------+--------------+-------------+------------------+--------+
+| id | name  | class_number | phone       | department       | gender |
++----+-------+--------------+-------------+------------------+--------+
+|  1 | Zahid | CS-112       | 03129876543 | Computer Science | M      |
+|  2 | Hamza | CS-113       | 03129876475 | Computer Science | M      |
+|  3 | Imran | BT-104       | 0312945775  | Botany           | M      |
+|  4 | Uzair | EN-107       | 03125478214 | English          | M      |
+|  6 | Imran | BT-104       | 0312945775  | Botany           | M      |
+|  7 | Imran | BT-104       | 0312945775  | Botany           | M      |
+|  8 | Imran | BT-104       | 0312945775  | Botany           | M      |
++----+-------+--------------+-------------+------------------+--------+
+7 rows in set (0.00 sec)
+
+mysql> create table teachers (id INT, name VARCHAR(50), designation VARCHAR(20), subject VARCHAR(200), d
+epartment_id INT, department_name VARCHAR(200), department_head VARCHAR(200));
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> DESC teachers;
++-----------------+--------------+------+-----+---------+-------+
+| Field           | Type         | Null | Key | Default | Extra |
++-----------------+--------------+------+-----+---------+-------+
+| id              | int          | YES  |     | NULL    |       |
+| name            | varchar(50)  | YES  |     | NULL    |       |
+| designation     | varchar(20)  | YES  |     | NULL    |       |
+| subject         | varchar(200) | YES  |     | NULL    |       |
+| department_id   | int          | YES  |     | NULL    |       |
+| department_name | varchar(200) | YES  |     | NULL    |       |
+| department_head | varchar(200) | YES  |     | NULL    |       |
++-----------------+--------------+------+-----+---------+-------+
+7 rows in set (0.00 sec)
+
+mysql> INSERT INTO teachers VALUES(1, "IRFAN", "Lecturer", "Database\nIntro to CS", "1\n2", "CS\nEng", "
+Mushtaq\nAtif");
+Query OK, 1 row affected, 1 warning (0.01 sec)
+
+mysql> SELECT * FROM teachers;
++------+-------+-------------+----------------------+---------------+-----------------+-----------------+
+| id   | name  | designation | subject              | department_id | department_name | department_head |
++------+-------+-------------+----------------------+---------------+-----------------+-----------------+
+|    1 | IRFAN | Lecturer    | Database
+Intro to CS |             1 | CS
+Eng          | Mushtaq
+Atif    |
++------+-------+-------------+----------------------+---------------+-----------------+-----------------+
+1 row in set (0.01 sec)
+
+mysql> SELECT * FROM teachers;
++------+-------+-------------+----------------------+---------------+-----------------+-----------------+
+| id   | name  | designation | subject              | department_id | department_name | department_head |
++------+-------+-------------+----------------------+---------------+-----------------+-----------------+
+|    1 | IRFAN | Lecturer    | Database
+Intro to CS |             1 | CS
+Eng          | Mushtaq
+Atif    |
++------+-------+-------------+----------------------+---------------+-----------------+-----------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT * FROM teachers;
++------+-------+-------------+------------------------+---------------+-----------------+-----------------+
+| id   | name  | designation | subject                | department_id | department_name | department_head |
++------+-------+-------------+------------------------+---------------+-----------------+-----------------+
+|    1 | IRFAN | Lecturer    | Database
+, Intro to CS | 1,2           | CS,
+Eng        | Mushtaq,
+Atif   |
++------+-------+-------------+------------------------+---------------+-----------------+-----------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT * FROM teachers;
++------+-------+-------------+------------------------+---------------+-----------------+-----------------+
+| id   | name  | designation | subject                | department_id | department_name | department_head |
++------+-------+-------------+------------------------+---------------+-----------------+-----------------+
+|    1 | IRFAN | Lecturer    | Database
+, Intro to CS | 1,2           | CS,
+Eng        | Mushtaq,
+Atif   |
++------+-------+-------------+------------------------+---------------+-----------------+-----------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT * FROM teachers;
++------+-------+-------------+-----------------------+---------------+-----------------+-----------------+
+| id   | name  | designation | subject               | department_id | department_name | department_head |
++------+-------+-------------+-----------------------+---------------+-----------------+-----------------+
+|    1 | IRFAN | Lecturer    | Database
+,Intro to CS | 1,2           | CS,
+Eng         | Mushtaq,
+ Atif  |
++------+-------+-------------+-----------------------+---------------+-----------------+-----------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT * FROM teachers;
++------+-------+-------------+----------------+---------------+-----------------+-----------------+
+| id   | name  | designation | subject        | department_id | department_name | department_head |
++------+-------+-------------+----------------+---------------+-----------------+-----------------+
+|    1 | IRFAN | Lecturer    | DB,Intro to CS | 1,2           | CS,
+Eng         | Mushtaq,
+ Atif  |
++------+-------+-------------+----------------+---------------+-----------------+-----------------+
+1 row in set (0.00 sec)
+
+mysql> INSERT INTO teachers VALUES(1, "IRFAN", "Lecturer", "Intro to CS", "2", "Eng", "Atif");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> SELECT * FROM teachers;
++------+-------+-------------+----------------+---------------+-----------------+-----------------+
+| id   | name  | designation | subject        | department_id | department_name | department_head |
++------+-------+-------------+----------------+---------------+-----------------+-----------------+
+|    1 | IRFAN | Lecturer    | DB,Intro to CS | 1,2           | CS,
+Eng         | Mushtaq,
+ Atif  |
+|    1 | IRFAN | Lecturer    | Intro to CS    | 2             | Eng             | Atif            |
++------+-------+-------------+----------------+---------------+-----------------+-----------------+
+2 rows in set (0.00 sec)
+
+mysql> UPDATE teachers SET subject = DB, department_id = 1, department_name = "CS", department_head = "Mushtaq" WHERE department_id = 1,2;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ',2' at line 1
+mysql> UPDATE teachers SET subject = DB, department_id = 1, department_name = "CS", department_head = "Mushtaq" WHERE department_id = "1,2";
+ERROR 1054 (42S22): Unknown column 'DB' in 'field list'
+mysql> UPDATE teachers SET subject = "DB", department_id = 1, department_name = "CS", department_head = "Mushtaq" WHERE department_id = "1,2";
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> SELECT * FROM teachers;
++------+-------+-------------+-------------+---------------+-----------------+-----------------+
+| id   | name  | designation | subject     | department_id | department_name | department_head |
++------+-------+-------------+-------------+---------------+-----------------+-----------------+
+|    1 | IRFAN | Lecturer    | DB          | 1             | CS              | Mushtaq         |
+|    1 | IRFAN | Lecturer    | Intro to CS | 2             | Eng             | Atif            |
++------+-------+-------------+-------------+---------------+-----------------+-----------------+
+2 rows in set (0.00 sec)
+
+mysql> CREATE TABLE departments (id INT PRIMARY KEY AUTO_INCREMENT, name VARCHAR(200), department_head INT);
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> INSERT INTO departments VALUES(NULL, "CS", 0), (NULL, "Eng", 0);
+Query OK, 2 rows affected (0.00 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM departments;
++----+------+-----------------+
+| id | name | department_head |
++----+------+-----------------+
+|  1 | CS   |               0 |
+|  2 | Eng  |               0 |
++----+------+-----------------+
+2 rows in set (0.00 sec)
+
+mysql> ALTER TABLE teachers DROP COLUMN department_name, DROP COLUMN department_head;
+Query OK, 2 rows affected (0.02 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM departments;
++----+------+-----------------+
+| id | name | department_head |
++----+------+-----------------+
+|  1 | CS   |               0 |
+|  2 | Eng  |               0 |
++----+------+-----------------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT * FROM teachers;
++------+-------+-------------+-------------+---------------+
+| id   | name  | designation | subject     | department_id |
++------+-------+-------------+-------------+---------------+
+|    1 | IRFAN | Lecturer    | DB          | 1             |
+|    1 | IRFAN | Lecturer    | Intro to CS | 2             |
++------+-------+-------------+-------------+---------------+
+2 rows in set (0.00 sec)
+
+mysql> CREATE TABLE subjects (id INT PRIMARY KEY AUTO_INCREMENT, name VARCHAR(200), department_id INT);
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> INSERT INTO subjects VALUES(NULL, "DB", 1), (NULL, "INTRO TO CS", 2);
+Query OK, 2 rows affected (0.00 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM subjects;
++----+-------------+---------------+
+| id | name        | department_id |
++----+-------------+---------------+
+|  1 | DB          |             1 |
+|  2 | INTRO TO CS |             2 |
++----+-------------+---------------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT * FROM teachers;
++------+-------+-------------+-------------+---------------+
+| id   | name  | designation | subject     | department_id |
++------+-------+-------------+-------------+---------------+
+|    1 | IRFAN | Lecturer    | DB          | 1             |
+|    1 | IRFAN | Lecturer    | Intro to CS | 2             |
++------+-------+-------------+-------------+---------------+
+2 rows in set (0.00 sec)
+
+mysql> ALTER TABLE teachers DROP COLUMN subject, DROP COLUMN department_id;
+Query OK, 2 rows affected (0.02 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM teachers;
++------+-------+-------------+
+| id   | name  | designation |
++------+-------+-------------+
+|    1 | IRFAN | Lecturer    |
+|    1 | IRFAN | Lecturer    |
++------+-------+-------------+
+2 rows in set (0.00 sec)
+
+mysql> DELETE FROM teachers LIMIT 1;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> SELECT * FROM teachers;
++------+-------+-------------+
+| id   | name  | designation |
++------+-------+-------------+
+|    1 | IRFAN | Lecturer    |
++------+-------+-------------+
+1 row in set (0.00 sec)
+
+mysql> ALTER TABLE teachers MODIFY id INT PRIMARY KEY AUTO_INCREMENT;
+Query OK, 1 row affected (0.02 sec)
+Records: 1  Duplicates: 0  Warnings: 0
+
+mysql> DESC teachers;
++-------------+-------------+------+-----+---------+----------------+
+| Field       | Type        | Null | Key | Default | Extra          |
++-------------+-------------+------+-----+---------+----------------+
+| id          | int         | NO   | PRI | NULL    | auto_increment |
+| name        | varchar(50) | YES  |     | NULL    |                |
+| designation | varchar(20) | YES  |     | NULL    |                |
++-------------+-------------+------+-----+---------+----------------+
+3 rows in set (0.00 sec)
+
+mysql> show tables;
++-------------------+
+| Tables_in_college |
++-------------------+
+| departments       |
+| students          |
+| subjects          |
+| teachers          |
++-------------------+
+4 rows in set (0.00 sec)
+
+mysql> CREATE TABLE teachers_x_subjects (id INT PRIMARY KEY AUTO_INCREMENT, teacher_id INT, subject_id INT);
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> INSERT INTO teachers_x_subjects VALUES(NULL, 1, 2);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> SELECT * FROM teachers_x_subjects;
++----+------------+------------+
+| id | teacher_id | subject_id |
++----+------------+------------+
+|  1 |          1 |          2 |
++----+------------+------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT t.name, s.name, d.name FROM teachers t INNER JOIN teachers_x_subjects txs ON txs.teacher_id = t.id INNER JOIN subjects s ON s.id =
+ txs.subject_id INNER JOIN departments d ON d.id = s.department_id;
++-------+-------------+------+
+| name  | name        | name |
++-------+-------------+------+
+| IRFAN | INTRO TO CS | Eng  |
++-------+-------------+------+
+1 row in set (0.00 sec)
+
+mysql> INSERT INTO teachers_x_subjects VALUES(NULL, 1, 1);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> SELECT t.name, s.name, d.name FROM teachers t INNER JOIN teachers_x_subjects txs ON txs.teacher_id = t.id INNER JOIN subjects s ON s.id = txs.subject_id INNER JOIN departments d ON d.id = s.department_id;
++-------+-------------+------+
+| name  | name        | name |
++-------+-------------+------+
+| IRFAN | INTRO TO CS | Eng  |
+| IRFAN | DB          | CS   |
++-------+-------------+------+
+2 rows in set (0.00 sec)
+
+mysql>
