@@ -1,0 +1,671 @@
+Microsoft Windows [Version 10.0.22621.3447]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\wamp64\bin\mysql\mysql8.0.31\bin>mysql -u root -p
+Enter password:
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 8
+Server version: 8.0.31 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| college            |
+| gdc_database       |
+| gdc_new            |
+| information_schema |
+| mango              |
+| my_database        |
+| mysql              |
+| performance_schema |
+| sms                |
+| students           |
+| sys                |
++--------------------+
+11 rows in set (0.01 sec)
+
+mysql> use mango;
+Database changed
+mysql> show tables;
++-----------------+
+| Tables_in_mango |
++-----------------+
+| agents          |
+| company         |
+| customer        |
+| daysorder       |
+| despatch        |
+| foods           |
+| listofitem      |
+| orders          |
+| student         |
+| studentreport   |
++-----------------+
+10 rows in set (0.01 sec)
+
+mysql> SELECT CUST_NAME FROM customer;
++-------------+
+| CUST_NAME   |
++-------------+
+| Holmes      |
+| Micheal     |
+| Albert      |
+| Ravindran   |
+| Cook        |
+| Stuart      |
+| Bolt        |
+| Fleming     |
+| Jacks       |
+| Yearannaidu |
+| Sasikant    |
+| Ramanathan  |
+| Avinash     |
+| Winston     |
+| Karl        |
+| Shilton     |
+| Charles     |
+| Srinivas    |
+| Steven      |
+| Karolina    |
+| Martin      |
+| Ramesh      |
+| Rangarappa  |
+| Venkatpati  |
+| Sundariya   |
++-------------+
+25 rows in set (0.01 sec)
+
+mysql> DESC order;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'order' at line 1
+mysql> DESC orders;
++-----------------+---------------+------+-----+---------+-------+
+| Field           | Type          | Null | Key | Default | Extra |
++-----------------+---------------+------+-----+---------+-------+
+| ORD_NUM         | decimal(6,0)  | NO   |     | NULL    |       |
+| ORD_AMOUNT      | decimal(12,2) | NO   |     | NULL    |       |
+| ADVANCE_AMOUNT  | decimal(12,2) | NO   |     | NULL    |       |
+| ORD_DATE        | date          | NO   |     | NULL    |       |
+| CUST_CODE       | varchar(6)    | NO   |     | NULL    |       |
+| AGENT_CODE      | varchar(6)    | NO   |     | NULL    |       |
+| ORD_DESCRIPTION | varchar(60)   | NO   |     | NULL    |       |
++-----------------+---------------+------+-----+---------+-------+
+7 rows in set (0.01 sec)
+
+mysql> SELECT * FROM orders;
++---------+------------+----------------+------------+-----------+------------+-----------------+
+| ORD_NUM | ORD_AMOUNT | ADVANCE_AMOUNT | ORD_DATE   | CUST_CODE | AGENT_CODE | ORD_DESCRIPTION |
++---------+------------+----------------+------------+-----------+------------+-----------------+
+            |  1000.00 |         600.00 | 2008-01-08 | C00015    | A003       | SOD
+            |  3000.00 |         500.00 | 2008-04-15 | C00019    | A010       | SOD
+            |  4500.00 |         900.00 | 2008-08-30 | C00007    | A010       | SOD
+            |  2000.00 |         400.00 | 2008-05-30 | C00016    | A007       | SOD
+            |  4000.00 |         600.00 | 2008-06-10 | C00022    | A002       | SOD
+            |  2000.00 |         300.00 | 2008-05-25 | C00012    | A012       | SOD
+            |  3500.00 |        2000.00 | 2008-08-15 | C00002    | A008       | SOD
+            |  2500.00 |         400.00 | 2008-09-16 | C00003    | A004       | SOD
+            |   500.00 |         100.00 | 2008-07-20 | C00023    | A006       | SOD
+            |  4000.00 |         700.00 | 2008-09-16 | C00007    | A010       | SOD
+            |  1500.00 |         600.00 | 2008-09-23 | C00008    | A004       | SOD
+            |  2500.00 |         400.00 | 2008-07-30 | C00025    | A011       | SOD
+            |  4200.00 |        1800.00 | 2008-09-25 | C00004    | A005       | SOD
+            |  2000.00 |        1200.00 | 2008-02-08 | C00013    | A013       | SOD
+            |  4000.00 |         600.00 | 2008-02-15 | C00008    | A004       | SOD
+            |  1500.00 |         700.00 | 2008-05-15 | C00021    | A005       | SOD
+            |  2500.00 |         500.00 | 2008-07-18 | C00025    | A011       | SOD
+            |  3500.00 |         800.00 | 2008-07-30 | C00011    | A010       | SOD
+            |  3000.00 |        1000.00 | 2008-07-15 | C00001    | A008       | SOD
+            |  1000.00 |         300.00 | 2008-07-10 | C00020    | A008       | SOD
+            |  1500.00 |         500.00 | 2008-03-13 | C00006    | A004       | SOD
+            |  2500.00 |         700.00 | 2008-04-20 | C00005    | A002       | SOD
+            |  2000.00 |         600.00 | 2008-10-10 | C00018    | A005       | SOD
+            |   800.00 |         200.00 | 2008-10-20 | C00014    | A001       | SOD
+            |   500.00 |         100.00 | 2008-09-16 | C00022    | A002       | SOD
+            |   500.00 |         100.00 | 2008-07-20 | C00009    | A002       | SOD
+            |   500.00 |         100.00 | 2008-07-13 | C00010    | A009       | SOD
+            |   500.00 |         100.00 | 2008-06-20 | C00017    | A007       | SOD
+            |   500.00 |         100.00 | 2008-06-24 | C00022    | A002       | SOD
+            |  2500.00 |         500.00 | 2008-07-20 | C00024    | A006       | SOD
+            |  2500.00 |         400.00 | 2008-07-20 | C00015    | A003       | SOD
+            |  3500.00 |        1500.00 | 2008-07-20 | C00009    | A002       | SOD
+            |  2000.00 |         800.00 | 2008-09-16 | C00007    | A010       | SOD
+            |   900.00 |         150.00 | 2008-08-26 | C00012    | A012       | SOD
+            |  1200.00 |         400.00 | 2008-06-29 | C00009    | A002       | SOD
+            |  4000.00 |        2000.00 | 2008-08-15 | C00013    | A013       | SOD
++---------+------------+----------------+------------+-----------+------------+-----------------+
+36 rows in set (0.01 sec)
+
+mysql> DESC customer;
++-----------------+---------------+------+-----+---------+-------+
+| Field           | Type          | Null | Key | Default | Extra |
++-----------------+---------------+------+-----+---------+-------+
+| CUST_CODE       | varchar(6)    | NO   |     | NULL    |       |
+| CUST_NAME       | varchar(40)   | NO   |     | NULL    |       |
+| CUST_CITY       | varchar(35)   | YES  | MUL | NULL    |       |
+| WORKING_AREA    | varchar(35)   | NO   |     | NULL    |       |
+| CUST_COUNTRY    | varchar(20)   | NO   |     | NULL    |       |
+| GRADE           | decimal(10,0) | YES  |     | NULL    |       |
+| OPENING_AMT     | decimal(12,2) | NO   |     | NULL    |       |
+| RECEIVE_AMT     | decimal(12,2) | NO   |     | NULL    |       |
+| PAYMENT_AMT     | decimal(12,2) | NO   |     | NULL    |       |
+| OUTSTANDING_AMT | decimal(12,2) | NO   |     | NULL    |       |
+| PHONE_NO        | varchar(17)   | NO   |     | NULL    |       |
+| AGENT_CODE      | varchar(6)    | YES  |     | NULL    |       |
++-----------------+---------------+------+-----+---------+-------+
+12 rows in set (0.00 sec)
+
+mysql> SELECT * FROM orders ord INNER JOIN customer cust ON cust.CUST_CODE = ord.CUST_CODE;
++---------+------------+----------------+------------+-----------+------------+-----------------+-----------+-------------+-------------------------------------+--------------+--------------+-------+-------------+-------------+-------------+-----------------+--------------+------------+
+| ORD_NUM | ORD_AMOUNT | ADVANCE_AMOUNT | ORD_DATE   | CUST_CODE | AGENT_CODE | ORD_DESCRIPTION | CUST_CODE | CUST_NAME   | CUST_CITY                           | WORKING_AREA | CUST_COUNTRY | GRADE | OPENING_AMT | RECEIVE_AMT | PAYMENT_AMT | OUTSTANDING_AMT | PHONE_NO     | AGENT_CODE |
++---------+------------+----------------+------------+-----------+------------+-----------------+-----------+-------------+-------------------------------------+--------------+--------------+-------+-------------+-------------+-------------+-----------------+--------------+------------+
+            | C00015    | Stuart      | London                              | London       | UK           |     1 |     6000.00 |     8000.00 |     3000.00 |        11000.00 | GFSGERS      | A003       |
+            | C00019    | Yearannaidu | Chennai                             | Chennai      | India        |     1 |     8000.00 |     7000.00 |     7000.00 |         8000.00 | ZZZZBFV      | A010       |
+            | C00007    | Ramanathan  | Chennai                             | Chennai      | India        |     1 |     7000.00 |    11000.00 |     9000.00 |         9000.00 | GHRDWSD      | A010       |
+            | C00016    | Venkatpati  | Bangalore                           | Bangalore    | India        |     2 |     8000.00 |    11000.00 |     7000.00 |        12000.00 | JRTVFDD      | A007       |
+            | C00022    | Avinash     | Mumbai                              | Mumbai       | India        |     2 |     7000.00 |    11000.00 |     9000.00 |         9000.00 | 113-12345678 | A002       |
+            | C00012    | Steven      | San Jose                            | San Jose     | USA          |     1 |     5000.00 |     7000.00 |     9000.00 |         3000.00 | KRFYGJK      | A012       |
+            | C00002    | Bolt        | New York                            | New York     | USA          |     3 |     5000.00 |     7000.00 |     9000.00 |         3000.00 | DDNRDRH      | A008       |
+            | C00003    | Martin      | Torento                             | Torento      | Canada       |     2 |     8000.00 |     7000.00 |     7000.00 |         8000.00 | MJYURFD      | A004       |
+            | C00023    | Karl        | London                              | London       | UK           |     0 |     4000.00 |     6000.00 |     7000.00 |         3000.00 | AAAABAA      | A006       |
+            | C00007    | Ramanathan  | Chennai                             | Chennai      | India        |     1 |     7000.00 |    11000.00 |     9000.00 |         9000.00 | GHRDWSD      | A010       |
+            | C00008    | Karolina    | Torento                             | Torento      | Canada       |     1 |     7000.00 |     7000.00 |     9000.00 |         5000.00 | HJKORED      | A004       |
+            | C00025    | Ravindran   | Bangalore                           | Bangalore    | India        |     2 |     5000.00 |     7000.00 |     4000.00 |         8000.00 | AVAVAVA      | A011       |
+            | C00004    | Winston     | Brisban                             | Brisban      | Australia    |     1 |     5000.00 |     8000.00 |     7000.00 |         6000.00 | AAAAAAA      | A005       |
+            | C00013    | Holmes      | London                              | London       | UK           |     2 |     6000.00 |     5000.00 |     7000.00 |         4000.00 | BBBBBBB      | A003       |
+            | C00008    | Karolina    | Torento                             | Torento      | Canada       |     1 |     7000.00 |     7000.00 |     9000.00 |         5000.00 | HJKORED      | A004       |
+            | C00021    | Jacks       | Brisban                             | Brisban      | Australia    |     1 |     7000.00 |     7000.00 |     7000.00 |         7000.00 | WERTGDF      | A005       |
+            | C00025    | Ravindran   | Bangalore                           | Bangalore    | India        |     2 |     5000.00 |     7000.00 |     4000.00 |         8000.00 | AVAVAVA      | A011       |
+            | C00011    | Sundariya   | Chennai                             | Chennai      | India        |     3 |     7000.00 |    11000.00 |     7000.00 |        11000.00 | PPHGRTS      | A010       |
+            | C00001    | Micheal     | New York                            | New York     | USA          |     2 |     3000.00 |     5000.00 |     2000.00 |         6000.00 | CCCCCCC      | A008       |
+            | C00020    | Albert      | New York                            | New York     | USA          |     3 |     5000.00 |     7000.00 |     6000.00 |         6000.00 | BBBBSBB      | A008       |
+            | C00006    | Shilton     | Torento                             | Torento      | Canada       |     1 |    10000.00 |     7000.00 |     6000.00 |        11000.00 | DDDDDDD      | A004       |
+            | C00005    | Sasikant    | Mumbai                              | Mumbai       | India        |     1 |     7000.00 |    11000.00 |     7000.00 |        11000.00 | 147-25896312 | A002       |
+            | C00018    | Fleming     | Brisban                             | Brisban      | Australia    |     2 |     7000.00 |     7000.00 |     9000.00 |         5000.00 | NHBGVFC      | A005       |
+            | C00014    | Rangarappa  | Bangalore                           | Bangalore    | India        |     2 |     8000.00 |    11000.00 |     7000.00 |        12000.00 | AAAATGF      | A001       |
+            | C00022    | Avinash     | Mumbai                              | Mumbai       | India        |     2 |     7000.00 |    11000.00 |     9000.00 |         9000.00 | 113-12345678 | A002       |
+            | C00009    | Ramesh      | Mumbai                              | Mumbai       | India        |     3 |     8000.00 |     7000.00 |     3000.00 |        12000.00 | Phone No     | A002       |
+            | C00010    | Charles     | Hampshair                           | Hampshair    | UK           |     3 |     6000.00 |     4000.00 |     5000.00 |         5000.00 | MMMMMMM      | A009       |
+            | C00017    | Srinivas    | Bangalore                           | Bangalore    | India        |     2 |     8000.00 |     4000.00 |     3000.00 |         9000.00 | AAAAAAB      | A007       |
+            | C00022    | Avinash     | Mumbai                              | Mumbai       | India        |     2 |     7000.00 |    11000.00 |     9000.00 |         9000.00 | 113-12345678 | A002       |
+            | C00024    | Cook        | London                              | London       | UK           |     2 |     4000.00 |     9000.00 |     7000.00 |         6000.00 | FSDDSDF      | A006       |
+            | C00015    | Stuart      | London                              | London       | UK           |     1 |     6000.00 |     8000.00 |     3000.00 |        11000.00 | GFSGERS      | A003       |
+            | C00009    | Ramesh      | Mumbai                              | Mumbai       | India        |     3 |     8000.00 |     7000.00 |     3000.00 |        12000.00 | Phone No     | A002       |
+            | C00007    | Ramanathan  | Chennai                             | Chennai      | India        |     1 |     7000.00 |    11000.00 |     9000.00 |         9000.00 | GHRDWSD      | A010       |
+            | C00012    | Steven      | San Jose                            | San Jose     | USA          |     1 |     5000.00 |     7000.00 |     9000.00 |         3000.00 | KRFYGJK      | A012       |
+            | C00009    | Ramesh      | Mumbai                              | Mumbai       | India        |     3 |     8000.00 |     7000.00 |     3000.00 |        12000.00 | Phone No     | A002       |
+            | C00013    | Holmes      | London                              | London       | UK           |     2 |     6000.00 |     5000.00 |     7000.00 |         4000.00 | BBBBBBB      | A003       |
++---------+------------+----------------+------------+-----------+------------+-----------------+-----------+-------------+-------------------------------------+--------------+--------------+-------+-------------+-------------+-------------+-----------------+--------------+------------+
+36 rows in set (0.00 sec)
+       SELECT cust.CUST_NAME, cust.CUST_CITY, ord.ORD_DATE, ord.ORD_AMOUNT FROM orders ord INNER JOIN customer cust ON cust.CUST_CODE = ord.CUST_CODE;
++-------------+-------------------------------------+------------+------------+
+| CUST_NAME   | CUST_CITY                           | ORD_DATE   | ORD_AMOUNT |
++-------------+-------------------------------------+------------+------------+
+| Stuart      | London                              | 2008-01-08 |    1000.00 |
+| Yearannaidu | Chennai                             | 2008-04-15 |    3000.00 |
+| Ramanathan  | Chennai                             | 2008-08-30 |    4500.00 |
+| Venkatpati  | Bangalore                           | 2008-05-30 |    2000.00 |
+| Avinash     | Mumbai                              | 2008-06-10 |    4000.00 |
+| Steven      | San Jose                            | 2008-05-25 |    2000.00 |
+| Bolt        | New York                            | 2008-08-15 |    3500.00 |
+| Martin      | Torento                             | 2008-09-16 |    2500.00 |
+| Karl        | London                              | 2008-07-20 |     500.00 |
+| Ramanathan  | Chennai                             | 2008-09-16 |    4000.00 |
+| Karolina    | Torento                             | 2008-09-23 |    1500.00 |
+| Ravindran   | Bangalore                           | 2008-07-30 |    2500.00 |
+| Winston     | Brisban                             | 2008-09-25 |    4200.00 |
+| Holmes      | London                              | 2008-02-08 |    2000.00 |
+| Karolina    | Torento                             | 2008-02-15 |    4000.00 |
+| Jacks       | Brisban                             | 2008-05-15 |    1500.00 |
+| Ravindran   | Bangalore                           | 2008-07-18 |    2500.00 |
+| Sundariya   | Chennai                             | 2008-07-30 |    3500.00 |
+| Micheal     | New York                            | 2008-07-15 |    3000.00 |
+| Albert      | New York                            | 2008-07-10 |    1000.00 |
+| Shilton     | Torento                             | 2008-03-13 |    1500.00 |
+| Sasikant    | Mumbai                              | 2008-04-20 |    2500.00 |
+| Fleming     | Brisban                             | 2008-10-10 |    2000.00 |
+| Rangarappa  | Bangalore                           | 2008-10-20 |     800.00 |
+| Avinash     | Mumbai                              | 2008-09-16 |     500.00 |
+| Ramesh      | Mumbai                              | 2008-07-20 |     500.00 |
+| Charles     | Hampshair                           | 2008-07-13 |     500.00 |
+| Srinivas    | Bangalore                           | 2008-06-20 |     500.00 |
+| Avinash     | Mumbai                              | 2008-06-24 |     500.00 |
+| Cook        | London                              | 2008-07-20 |    2500.00 |
+| Stuart      | London                              | 2008-07-20 |    2500.00 |
+| Ramesh      | Mumbai                              | 2008-07-20 |    3500.00 |
+| Ramanathan  | Chennai                             | 2008-09-16 |    2000.00 |
+| Steven      | San Jose                            | 2008-08-26 |     900.00 |
+| Ramesh      | Mumbai                              | 2008-06-29 |    1200.00 |
+| Holmes      | London                              | 2008-08-15 |    4000.00 |
++-------------+-------------------------------------+------------+------------+
+36 rows in set (0.00 sec)
+
+mysql> SELECT cust.CUST_NAME, cust.CUST_CITY, ord.ORD_DATE, ord.ORD_AMOUNT FROM orders ord INNER JOIN customer cust ON cust.CUST_CODE = ord.CUST_CODE ORDER BY ord.ORD_AMOUNT DESC;
++-------------+-------------------------------------+------------+------------+
+| CUST_NAME   | CUST_CITY                           | ORD_DATE   | ORD_AMOUNT |
++-------------+-------------------------------------+------------+------------+
+| Ramanathan  | Chennai                             | 2008-08-30 |    4500.00 |
+| Winston     | Brisban                             | 2008-09-25 |    4200.00 |
+| Holmes      | London                              | 2008-08-15 |    4000.00 |
+| Ramanathan  | Chennai                             | 2008-09-16 |    4000.00 |
+| Karolina    | Torento                             | 2008-02-15 |    4000.00 |
+| Avinash     | Mumbai                              | 2008-06-10 |    4000.00 |
+| Sundariya   | Chennai                             | 2008-07-30 |    3500.00 |
+| Bolt        | New York                            | 2008-08-15 |    3500.00 |
+| Ramesh      | Mumbai                              | 2008-07-20 |    3500.00 |
+| Yearannaidu | Chennai                             | 2008-04-15 |    3000.00 |
+| Micheal     | New York                            | 2008-07-15 |    3000.00 |
+| Martin      | Torento                             | 2008-09-16 |    2500.00 |
+| Ravindran   | Bangalore                           | 2008-07-30 |    2500.00 |
+| Sasikant    | Mumbai                              | 2008-04-20 |    2500.00 |
+| Cook        | London                              | 2008-07-20 |    2500.00 |
+| Stuart      | London                              | 2008-07-20 |    2500.00 |
+| Ravindran   | Bangalore                           | 2008-07-18 |    2500.00 |
+| Venkatpati  | Bangalore                           | 2008-05-30 |    2000.00 |
+| Steven      | San Jose                            | 2008-05-25 |    2000.00 |
+| Holmes      | London                              | 2008-02-08 |    2000.00 |
+| Fleming     | Brisban                             | 2008-10-10 |    2000.00 |
+| Ramanathan  | Chennai                             | 2008-09-16 |    2000.00 |
+| Karolina    | Torento                             | 2008-09-23 |    1500.00 |
+| Jacks       | Brisban                             | 2008-05-15 |    1500.00 |
+| Shilton     | Torento                             | 2008-03-13 |    1500.00 |
+| Ramesh      | Mumbai                              | 2008-06-29 |    1200.00 |
+| Albert      | New York                            | 2008-07-10 |    1000.00 |
+| Stuart      | London                              | 2008-01-08 |    1000.00 |
+| Steven      | San Jose                            | 2008-08-26 |     900.00 |
+| Rangarappa  | Bangalore                           | 2008-10-20 |     800.00 |
+| Karl        | London                              | 2008-07-20 |     500.00 |
+| Avinash     | Mumbai                              | 2008-09-16 |     500.00 |
+| Ramesh      | Mumbai                              | 2008-07-20 |     500.00 |
+| Charles     | Hampshair                           | 2008-07-13 |     500.00 |
+| Srinivas    | Bangalore                           | 2008-06-20 |     500.00 |
+| Avinash     | Mumbai                              | 2008-06-24 |     500.00 |
++-------------+-------------------------------------+------------+------------+
+36 rows in set (0.01 sec)
+
+mysql> SELECT cust.CUST_CODE, cust.CUST_NAME, cust.CUST_CITY, ord.ORD_DATE, ord.ORD_AMOUNT FROM orders ord INNER JOIN customer cust ON cust.CUST_CODE = ord.
+CUST_CODE ORDER BY ord.ORD_AMOUNT DESC;
++-----------+-------------+-------------------------------------+------------+------------+
+| CUST_CODE | CUST_NAME   | CUST_CITY                           | ORD_DATE   | ORD_AMOUNT |
++-----------+-------------+-------------------------------------+------------+------------+
+| C00007    | Ramanathan  | Chennai                             | 2008-08-30 |    4500.00 |
+| C00004    | Winston     | Brisban                             | 2008-09-25 |    4200.00 |
+| C00013    | Holmes      | London                              | 2008-08-15 |    4000.00 |
+| C00007    | Ramanathan  | Chennai                             | 2008-09-16 |    4000.00 |
+| C00008    | Karolina    | Torento                             | 2008-02-15 |    4000.00 |
+| C00022    | Avinash     | Mumbai                              | 2008-06-10 |    4000.00 |
+| C00011    | Sundariya   | Chennai                             | 2008-07-30 |    3500.00 |
+| C00002    | Bolt        | New York                            | 2008-08-15 |    3500.00 |
+| C00009    | Ramesh      | Mumbai                              | 2008-07-20 |    3500.00 |
+| C00019    | Yearannaidu | Chennai                             | 2008-04-15 |    3000.00 |
+| C00001    | Micheal     | New York                            | 2008-07-15 |    3000.00 |
+| C00003    | Martin      | Torento                             | 2008-09-16 |    2500.00 |
+| C00025    | Ravindran   | Bangalore                           | 2008-07-30 |    2500.00 |
+| C00005    | Sasikant    | Mumbai                              | 2008-04-20 |    2500.00 |
+| C00024    | Cook        | London                              | 2008-07-20 |    2500.00 |
+| C00015    | Stuart      | London                              | 2008-07-20 |    2500.00 |
+| C00025    | Ravindran   | Bangalore                           | 2008-07-18 |    2500.00 |
+| C00016    | Venkatpati  | Bangalore                           | 2008-05-30 |    2000.00 |
+| C00012    | Steven      | San Jose                            | 2008-05-25 |    2000.00 |
+| C00013    | Holmes      | London                              | 2008-02-08 |    2000.00 |
+| C00018    | Fleming     | Brisban                             | 2008-10-10 |    2000.00 |
+| C00007    | Ramanathan  | Chennai                             | 2008-09-16 |    2000.00 |
+| C00008    | Karolina    | Torento                             | 2008-09-23 |    1500.00 |
+| C00021    | Jacks       | Brisban                             | 2008-05-15 |    1500.00 |
+| C00006    | Shilton     | Torento                             | 2008-03-13 |    1500.00 |
+| C00009    | Ramesh      | Mumbai                              | 2008-06-29 |    1200.00 |
+| C00020    | Albert      | New York                            | 2008-07-10 |    1000.00 |
+| C00015    | Stuart      | London                              | 2008-01-08 |    1000.00 |
+| C00012    | Steven      | San Jose                            | 2008-08-26 |     900.00 |
+| C00014    | Rangarappa  | Bangalore                           | 2008-10-20 |     800.00 |
+| C00023    | Karl        | London                              | 2008-07-20 |     500.00 |
+| C00022    | Avinash     | Mumbai                              | 2008-09-16 |     500.00 |
+| C00009    | Ramesh      | Mumbai                              | 2008-07-20 |     500.00 |
+| C00010    | Charles     | Hampshair                           | 2008-07-13 |     500.00 |
+| C00017    | Srinivas    | Bangalore                           | 2008-06-20 |     500.00 |
+| C00022    | Avinash     | Mumbai                              | 2008-06-24 |     500.00 |
++-----------+-------------+-------------------------------------+------------+------------+
+36 rows in set (0.00 sec)
+
+mysql> SELECT cust.CUST_CODE, cust.CUST_NAME, cust.CUST_CITY, ord.ORD_DATE, ord.ORD_AMOUNT FROM orders ord INNER JOIN customer cust ON cust.CUST_CODE = ord.CUST_CODE ORDER BY ord.ORD_DATE;
++-----------+-------------+-------------------------------------+------------+------------+
+| CUST_CODE | CUST_NAME   | CUST_CITY                           | ORD_DATE   | ORD_AMOUNT |
++-----------+-------------+-------------------------------------+------------+------------+
+| C00015    | Stuart      | London                              | 2008-01-08 |    1000.00 |
+| C00013    | Holmes      | London                              | 2008-02-08 |    2000.00 |
+| C00008    | Karolina    | Torento                             | 2008-02-15 |    4000.00 |
+| C00006    | Shilton     | Torento                             | 2008-03-13 |    1500.00 |
+| C00019    | Yearannaidu | Chennai                             | 2008-04-15 |    3000.00 |
+| C00005    | Sasikant    | Mumbai                              | 2008-04-20 |    2500.00 |
+| C00021    | Jacks       | Brisban                             | 2008-05-15 |    1500.00 |
+| C00012    | Steven      | San Jose                            | 2008-05-25 |    2000.00 |
+| C00016    | Venkatpati  | Bangalore                           | 2008-05-30 |    2000.00 |
+| C00022    | Avinash     | Mumbai                              | 2008-06-10 |    4000.00 |
+| C00017    | Srinivas    | Bangalore                           | 2008-06-20 |     500.00 |
+| C00022    | Avinash     | Mumbai                              | 2008-06-24 |     500.00 |
+| C00009    | Ramesh      | Mumbai                              | 2008-06-29 |    1200.00 |
+| C00020    | Albert      | New York                            | 2008-07-10 |    1000.00 |
+| C00010    | Charles     | Hampshair                           | 2008-07-13 |     500.00 |
+| C00001    | Micheal     | New York                            | 2008-07-15 |    3000.00 |
+| C00025    | Ravindran   | Bangalore                           | 2008-07-18 |    2500.00 |
+| C00009    | Ramesh      | Mumbai                              | 2008-07-20 |     500.00 |
+| C00024    | Cook        | London                              | 2008-07-20 |    2500.00 |
+| C00015    | Stuart      | London                              | 2008-07-20 |    2500.00 |
+| C00009    | Ramesh      | Mumbai                              | 2008-07-20 |    3500.00 |
+| C00023    | Karl        | London                              | 2008-07-20 |     500.00 |
+| C00011    | Sundariya   | Chennai                             | 2008-07-30 |    3500.00 |
+| C00025    | Ravindran   | Bangalore                           | 2008-07-30 |    2500.00 |
+| C00002    | Bolt        | New York                            | 2008-08-15 |    3500.00 |
+| C00013    | Holmes      | London                              | 2008-08-15 |    4000.00 |
+| C00012    | Steven      | San Jose                            | 2008-08-26 |     900.00 |
+| C00007    | Ramanathan  | Chennai                             | 2008-08-30 |    4500.00 |
+| C00003    | Martin      | Torento                             | 2008-09-16 |    2500.00 |
+| C00022    | Avinash     | Mumbai                              | 2008-09-16 |     500.00 |
+| C00007    | Ramanathan  | Chennai                             | 2008-09-16 |    4000.00 |
+| C00007    | Ramanathan  | Chennai                             | 2008-09-16 |    2000.00 |
+| C00008    | Karolina    | Torento                             | 2008-09-23 |    1500.00 |
+| C00004    | Winston     | Brisban                             | 2008-09-25 |    4200.00 |
+| C00018    | Fleming     | Brisban                             | 2008-10-10 |    2000.00 |
+| C00014    | Rangarappa  | Bangalore                           | 2008-10-20 |     800.00 |
++-----------+-------------+-------------------------------------+------------+------------+
+36 rows in set (0.00 sec)
+
+mysql> SELECT cust.CUST_CODE, cust.CUST_NAME, cust.CUST_CITY, ord.ORD_DATE, ord.ORD_AMOUNT FROM orders ord INNER JOIN customer cust ON cust.CUST_CODE = ord.
+CUST_CODE GROUP BY ord.CUST_CODE ORDER BY ord.ORD_DATE;
++-----------+-------------+-------------------------------------+------------+------------+
+| CUST_CODE | CUST_NAME   | CUST_CITY                           | ORD_DATE   | ORD_AMOUNT |
++-----------+-------------+-------------------------------------+------------+------------+
+| C00015    | Stuart      | London                              | 2008-01-08 |    1000.00 |
+| C00013    | Holmes      | London                              | 2008-02-08 |    2000.00 |
+| C00006    | Shilton     | Torento                             | 2008-03-13 |    1500.00 |
+| C00019    | Yearannaidu | Chennai                             | 2008-04-15 |    3000.00 |
+| C00005    | Sasikant    | Mumbai                              | 2008-04-20 |    2500.00 |
+| C00021    | Jacks       | Brisban                             | 2008-05-15 |    1500.00 |
+| C00012    | Steven      | San Jose                            | 2008-05-25 |    2000.00 |
+| C00016    | Venkatpati  | Bangalore                           | 2008-05-30 |    2000.00 |
+| C00022    | Avinash     | Mumbai                              | 2008-06-10 |    4000.00 |
+| C00017    | Srinivas    | Bangalore                           | 2008-06-20 |     500.00 |
+| C00020    | Albert      | New York                            | 2008-07-10 |    1000.00 |
+| C00010    | Charles     | Hampshair                           | 2008-07-13 |     500.00 |
+| C00001    | Micheal     | New York                            | 2008-07-15 |    3000.00 |
+| C00023    | Karl        | London                              | 2008-07-20 |     500.00 |
+| C00009    | Ramesh      | Mumbai                              | 2008-07-20 |     500.00 |
+| C00024    | Cook        | London                              | 2008-07-20 |    2500.00 |
+| C00025    | Ravindran   | Bangalore                           | 2008-07-30 |    2500.00 |
+| C00011    | Sundariya   | Chennai                             | 2008-07-30 |    3500.00 |
+| C00002    | Bolt        | New York                            | 2008-08-15 |    3500.00 |
+| C00007    | Ramanathan  | Chennai                             | 2008-08-30 |    4500.00 |
+| C00003    | Martin      | Torento                             | 2008-09-16 |    2500.00 |
+| C00008    | Karolina    | Torento                             | 2008-09-23 |    1500.00 |
+| C00004    | Winston     | Brisban                             | 2008-09-25 |    4200.00 |
+| C00018    | Fleming     | Brisban                             | 2008-10-10 |    2000.00 |
+| C00014    | Rangarappa  | Bangalore                           | 2008-10-20 |     800.00 |
++-----------+-------------+-------------------------------------+------------+------------+
+25 rows in set (0.01 sec)
+
+mysql> SELECT cust.CUST_CODE, cust.CUST_NAME, cust.CUST_CITY, ord.ORD_DATE, GROUP_CONCAT(ord.ORD_AMOUNT) FROM orders ord INNER JOIN customer cust ON cust.CU
+ST_CODE = ord.CUST_CODE GROUP BY ord.CUST_CODE ORDER BY ord.ORD_DATE;
++-----------+-------------+-------------------------------------+------------+------------------------------+
+| CUST_CODE | CUST_NAME   | CUST_CITY                           | ORD_DATE   | GROUP_CONCAT(ord.ORD_AMOUNT) |
++-----------+-------------+-------------------------------------+------------+------------------------------+
+| C00006    | Shilton     | Torento                             | 2008-03-13 | 1500.00                      |
+| C00019    | Yearannaidu | Chennai                             | 2008-04-15 | 3000.00                      |
+| C00005    | Sasikant    | Mumbai                              | 2008-04-20 | 2500.00                      |
+| C00021    | Jacks       | Brisban                             | 2008-05-15 | 1500.00                      |
+| C00016    | Venkatpati  | Bangalore                           | 2008-05-30 | 2000.00                      |
+| C00017    | Srinivas    | Bangalore                           | 2008-06-20 | 500.00                       |
+| C00020    | Albert      | New York                            | 2008-07-10 | 1000.00                      |
+| C00010    | Charles     | Hampshair                           | 2008-07-13 | 500.00                       |
+| C00001    | Micheal     | New York                            | 2008-07-15 | 3000.00                      |
+| C00025    | Ravindran   | Bangalore                           | 2008-07-18 | 2500.00,2500.00              |
+| C00009    | Ramesh      | Mumbai                              | 2008-07-20 | 3500.00,500.00,1200.00       |
+| C00015    | Stuart      | London                              | 2008-07-20 | 2500.00,1000.00              |
+| C00023    | Karl        | London                              | 2008-07-20 | 500.00                       |
+| C00024    | Cook        | London                              | 2008-07-20 | 2500.00                      |
+| C00011    | Sundariya   | Chennai                             | 2008-07-30 | 3500.00                      |
+| C00002    | Bolt        | New York                            | 2008-08-15 | 3500.00                      |
+| C00013    | Holmes      | London                              | 2008-08-15 | 4000.00,2000.00              |
+| C00012    | Steven      | San Jose                            | 2008-08-26 | 900.00,2000.00               |
+| C00007    | Ramanathan  | Chennai                             | 2008-08-30 | 4500.00,2000.00,4000.00      |
+| C00003    | Martin      | Torento                             | 2008-09-16 | 2500.00                      |
+| C00022    | Avinash     | Mumbai                              | 2008-09-16 | 500.00,500.00,4000.00        |
+| C00008    | Karolina    | Torento                             | 2008-09-23 | 1500.00,4000.00              |
+| C00004    | Winston     | Brisban                             | 2008-09-25 | 4200.00                      |
+| C00018    | Fleming     | Brisban                             | 2008-10-10 | 2000.00                      |
+| C00014    | Rangarappa  | Bangalore                           | 2008-10-20 | 800.00                       |
++-----------+-------------+-------------------------------------+------------+------------------------------+
+25 rows in set (0.01 sec)
+
+mysql> SELECT cust.CUST_CODE, cust.CUST_NAME, cust.CUST_CITY, ord.ORD_DATE, COUNT(ord.ORD_DATE) FROM orders ord INNER JOIN customer cust ON cust.CUST_CODE =
+ ord.CUST_CODE GROUP BY ord.CUST_CODE ORDER BY ord.ORD_DATE;
++-----------+-------------+-------------------------------------+------------+---------------------+
+| CUST_CODE | CUST_NAME   | CUST_CITY                           | ORD_DATE   | COUNT(ord.ORD_DATE) |
++-----------+-------------+-------------------------------------+------------+---------------------+
+| C00015    | Stuart      | London                              | 2008-01-08 |                   2 |
+| C00013    | Holmes      | London                              | 2008-02-08 |                   2 |
+| C00006    | Shilton     | Torento                             | 2008-03-13 |                   1 |
+| C00019    | Yearannaidu | Chennai                             | 2008-04-15 |                   1 |
+| C00005    | Sasikant    | Mumbai                              | 2008-04-20 |                   1 |
+| C00021    | Jacks       | Brisban                             | 2008-05-15 |                   1 |
+| C00012    | Steven      | San Jose                            | 2008-05-25 |                   2 |
+| C00016    | Venkatpati  | Bangalore                           | 2008-05-30 |                   1 |
+| C00022    | Avinash     | Mumbai                              | 2008-06-10 |                   3 |
+| C00017    | Srinivas    | Bangalore                           | 2008-06-20 |                   1 |
+| C00020    | Albert      | New York                            | 2008-07-10 |                   1 |
+| C00010    | Charles     | Hampshair                           | 2008-07-13 |                   1 |
+| C00001    | Micheal     | New York                            | 2008-07-15 |                   1 |
+| C00023    | Karl        | London                              | 2008-07-20 |                   1 |
+| C00009    | Ramesh      | Mumbai                              | 2008-07-20 |                   3 |
+| C00024    | Cook        | London                              | 2008-07-20 |                   1 |
+| C00025    | Ravindran   | Bangalore                           | 2008-07-30 |                   2 |
+| C00011    | Sundariya   | Chennai                             | 2008-07-30 |                   1 |
+| C00002    | Bolt        | New York                            | 2008-08-15 |                   1 |
+| C00007    | Ramanathan  | Chennai                             | 2008-08-30 |                   3 |
+| C00003    | Martin      | Torento                             | 2008-09-16 |                   1 |
+| C00008    | Karolina    | Torento                             | 2008-09-23 |                   2 |
+| C00004    | Winston     | Brisban                             | 2008-09-25 |                   1 |
+| C00018    | Fleming     | Brisban                             | 2008-10-10 |                   1 |
+| C00014    | Rangarappa  | Bangalore                           | 2008-10-20 |                   1 |
++-----------+-------------+-------------------------------------+------------+---------------------+
+25 rows in set (0.01 sec)
+
+mysql> SELECT cust.CUST_CODE, cust.CUST_NAME, cust.CUST_CITY, ord.ORD_DATE, COUNT(cust.CUST_CODE) FROM orders ord INNER JOIN customer cust ON cust.CUST_CODE
+ = ord.CUST_CODE GROUP BY ord.CUST_CODE ORDER BY ord.ORD_DATE;
++-----------+-------------+-------------------------------------+------------+-----------------------+
+| CUST_CODE | CUST_NAME   | CUST_CITY                           | ORD_DATE   | COUNT(cust.CUST_CODE) |
++-----------+-------------+-------------------------------------+------------+-----------------------+
+| C00015    | Stuart      | London                              | 2008-01-08 |                     2 |
+| C00013    | Holmes      | London                              | 2008-02-08 |                     2 |
+| C00006    | Shilton     | Torento                             | 2008-03-13 |                     1 |
+| C00019    | Yearannaidu | Chennai                             | 2008-04-15 |                     1 |
+| C00005    | Sasikant    | Mumbai                              | 2008-04-20 |                     1 |
+| C00021    | Jacks       | Brisban                             | 2008-05-15 |                     1 |
+| C00012    | Steven      | San Jose                            | 2008-05-25 |                     2 |
+| C00016    | Venkatpati  | Bangalore                           | 2008-05-30 |                     1 |
+| C00022    | Avinash     | Mumbai                              | 2008-06-10 |                     3 |
+| C00017    | Srinivas    | Bangalore                           | 2008-06-20 |                     1 |
+| C00020    | Albert      | New York                            | 2008-07-10 |                     1 |
+| C00010    | Charles     | Hampshair                           | 2008-07-13 |                     1 |
+| C00001    | Micheal     | New York                            | 2008-07-15 |                     1 |
+| C00023    | Karl        | London                              | 2008-07-20 |                     1 |
+| C00009    | Ramesh      | Mumbai                              | 2008-07-20 |                     3 |
+| C00024    | Cook        | London                              | 2008-07-20 |                     1 |
+| C00025    | Ravindran   | Bangalore                           | 2008-07-30 |                     2 |
+| C00011    | Sundariya   | Chennai                             | 2008-07-30 |                     1 |
+| C00002    | Bolt        | New York                            | 2008-08-15 |                     1 |
+| C00007    | Ramanathan  | Chennai                             | 2008-08-30 |                     3 |
+| C00003    | Martin      | Torento                             | 2008-09-16 |                     1 |
+| C00008    | Karolina    | Torento                             | 2008-09-23 |                     2 |
+| C00004    | Winston     | Brisban                             | 2008-09-25 |                     1 |
+| C00018    | Fleming     | Brisban                             | 2008-10-10 |                     1 |
+| C00014    | Rangarappa  | Bangalore                           | 2008-10-20 |                     1 |
++-----------+-------------+-------------------------------------+------------+-----------------------+
+25 rows in set (0.00 sec)
+
+mysql> SELECT cust.CUST_CODE, cust.CUST_NAME, cust.CUST_CITY, ord.ORD_DATE, COUNT(cust.CUST_CODE) FROM orders ord INNER JOIN customer cust ON cust.CUST_CODE = ord.CUST_CODE GROUP BY ord.CUST_CODE ORDER BY COUNT(cust.CUST_CODE) DESC;
++-----------+-------------+-------------------------------------+------------+-----------------------+
+| CUST_CODE | CUST_NAME   | CUST_CITY                           | ORD_DATE   | COUNT(cust.CUST_CODE) |
++-----------+-------------+-------------------------------------+------------+-----------------------+
+| C00007    | Ramanathan  | Chennai                             | 2008-08-30 |                     3 |
+| C00022    | Avinash     | Mumbai                              | 2008-06-10 |                     3 |
+| C00009    | Ramesh      | Mumbai                              | 2008-07-20 |                     3 |
+| C00015    | Stuart      | London                              | 2008-01-08 |                     2 |
+| C00012    | Steven      | San Jose                            | 2008-05-25 |                     2 |
+| C00008    | Karolina    | Torento                             | 2008-09-23 |                     2 |
+| C00025    | Ravindran   | Bangalore                           | 2008-07-30 |                     2 |
+| C00013    | Holmes      | London                              | 2008-02-08 |                     2 |
+| C00019    | Yearannaidu | Chennai                             | 2008-04-15 |                     1 |
+| C00016    | Venkatpati  | Bangalore                           | 2008-05-30 |                     1 |
+| C00002    | Bolt        | New York                            | 2008-08-15 |                     1 |
+| C00003    | Martin      | Torento                             | 2008-09-16 |                     1 |
+| C00023    | Karl        | London                              | 2008-07-20 |                     1 |
+| C00004    | Winston     | Brisban                             | 2008-09-25 |                     1 |
+| C00021    | Jacks       | Brisban                             | 2008-05-15 |                     1 |
+| C00011    | Sundariya   | Chennai                             | 2008-07-30 |                     1 |
+| C00001    | Micheal     | New York                            | 2008-07-15 |                     1 |
+| C00020    | Albert      | New York                            | 2008-07-10 |                     1 |
+| C00006    | Shilton     | Torento                             | 2008-03-13 |                     1 |
+| C00005    | Sasikant    | Mumbai                              | 2008-04-20 |                     1 |
+| C00018    | Fleming     | Brisban                             | 2008-10-10 |                     1 |
+| C00014    | Rangarappa  | Bangalore                           | 2008-10-20 |                     1 |
+| C00010    | Charles     | Hampshair                           | 2008-07-13 |                     1 |
+| C00017    | Srinivas    | Bangalore                           | 2008-06-20 |                     1 |
+| C00024    | Cook        | London                              | 2008-07-20 |                     1 |
++-----------+-------------+-------------------------------------+------------+-----------------------+
+25 rows in set (0.00 sec)
+
+mysql> SELECT cust.CUST_CODE, cust.CUST_NAME, cust.CUST_CITY, ord.ORD_DATE, SUM(ord.ORD_AMOUNT) FROM orders ord INNER JOIN customer cust ON cust.CUST_CODE = ord.CUST_CODE GROUP BY ord.CUST_CODE;
++-----------+-------------+-------------------------------------+------------+---------------------+
+| CUST_CODE | CUST_NAME   | CUST_CITY                           | ORD_DATE   | SUM(ord.ORD_AMOUNT) |
++-----------+-------------+-------------------------------------+------------+---------------------+
+| C00015    | Stuart      | London                              | 2008-01-08 |             3500.00 |
+| C00019    | Yearannaidu | Chennai                             | 2008-04-15 |             3000.00 |
+| C00007    | Ramanathan  | Chennai                             | 2008-08-30 |            10500.00 |
+| C00016    | Venkatpati  | Bangalore                           | 2008-05-30 |             2000.00 |
+| C00022    | Avinash     | Mumbai                              | 2008-06-10 |             5000.00 |
+| C00012    | Steven      | San Jose                            | 2008-05-25 |             2900.00 |
+| C00002    | Bolt        | New York                            | 2008-08-15 |             3500.00 |
+| C00003    | Martin      | Torento                             | 2008-09-16 |             2500.00 |
+| C00023    | Karl        | London                              | 2008-07-20 |              500.00 |
+| C00008    | Karolina    | Torento                             | 2008-09-23 |             5500.00 |
+| C00025    | Ravindran   | Bangalore                           | 2008-07-30 |             5000.00 |
+| C00004    | Winston     | Brisban                             | 2008-09-25 |             4200.00 |
+| C00013    | Holmes      | London                              | 2008-02-08 |             6000.00 |
+| C00021    | Jacks       | Brisban                             | 2008-05-15 |             1500.00 |
+| C00011    | Sundariya   | Chennai                             | 2008-07-30 |             3500.00 |
+| C00001    | Micheal     | New York                            | 2008-07-15 |             3000.00 |
+| C00020    | Albert      | New York                            | 2008-07-10 |             1000.00 |
+| C00006    | Shilton     | Torento                             | 2008-03-13 |             1500.00 |
+| C00005    | Sasikant    | Mumbai                              | 2008-04-20 |             2500.00 |
+| C00018    | Fleming     | Brisban                             | 2008-10-10 |             2000.00 |
+| C00014    | Rangarappa  | Bangalore                           | 2008-10-20 |              800.00 |
+| C00009    | Ramesh      | Mumbai                              | 2008-07-20 |             5200.00 |
+| C00010    | Charles     | Hampshair                           | 2008-07-13 |              500.00 |
+| C00017    | Srinivas    | Bangalore                           | 2008-06-20 |              500.00 |
+| C00024    | Cook        | London                              | 2008-07-20 |             2500.00 |
++-----------+-------------+-------------------------------------+------------+---------------------+
+25 rows in set (0.00 sec)
+
+mysql> SELECT cust.CUST_CODE, cust.CUST_NAME, cust.CUST_CITY, ord.ORD_DATE, SUM(ord.ORD_AMOUNT) FROM orders ord INNER JOIN customer cust ON cust.CUST_CODE = ord.CUST_CODE GROUP BY ord.CUST_CODE ORDER BY 5 DESC;
++-----------+-------------+-------------------------------------+------------+---------------------+
+| CUST_CODE | CUST_NAME   | CUST_CITY                           | ORD_DATE   | SUM(ord.ORD_AMOUNT) |
++-----------+-------------+-------------------------------------+------------+---------------------+
+| C00007    | Ramanathan  | Chennai                             | 2008-08-30 |            10500.00 |
+| C00013    | Holmes      | London                              | 2008-02-08 |             6000.00 |
+| C00008    | Karolina    | Torento                             | 2008-09-23 |             5500.00 |
+| C00009    | Ramesh      | Mumbai                              | 2008-07-20 |             5200.00 |
+| C00022    | Avinash     | Mumbai                              | 2008-06-10 |             5000.00 |
+| C00025    | Ravindran   | Bangalore                           | 2008-07-30 |             5000.00 |
+| C00004    | Winston     | Brisban                             | 2008-09-25 |             4200.00 |
+| C00015    | Stuart      | London                              | 2008-01-08 |             3500.00 |
+| C00002    | Bolt        | New York                            | 2008-08-15 |             3500.00 |
+| C00011    | Sundariya   | Chennai                             | 2008-07-30 |             3500.00 |
+| C00019    | Yearannaidu | Chennai                             | 2008-04-15 |             3000.00 |
+| C00001    | Micheal     | New York                            | 2008-07-15 |             3000.00 |
+| C00012    | Steven      | San Jose                            | 2008-05-25 |             2900.00 |
+| C00003    | Martin      | Torento                             | 2008-09-16 |             2500.00 |
+| C00005    | Sasikant    | Mumbai                              | 2008-04-20 |             2500.00 |
+| C00024    | Cook        | London                              | 2008-07-20 |             2500.00 |
+| C00016    | Venkatpati  | Bangalore                           | 2008-05-30 |             2000.00 |
+| C00018    | Fleming     | Brisban                             | 2008-10-10 |             2000.00 |
+| C00021    | Jacks       | Brisban                             | 2008-05-15 |             1500.00 |
+| C00006    | Shilton     | Torento                             | 2008-03-13 |             1500.00 |
+| C00020    | Albert      | New York                            | 2008-07-10 |             1000.00 |
+| C00014    | Rangarappa  | Bangalore                           | 2008-10-20 |              800.00 |
+| C00023    | Karl        | London                              | 2008-07-20 |              500.00 |
+| C00010    | Charles     | Hampshair                           | 2008-07-13 |              500.00 |
+| C00017    | Srinivas    | Bangalore                           | 2008-06-20 |              500.00 |
++-----------+-------------+-------------------------------------+------------+---------------------+
+25 rows in set (0.00 sec)
+
+mysql> SELECT cust.CUST_CODE, cust.CUST_NAME, cust.CUST_CITY, ord.ORD_DATE, SUM(ord.ORD_AMOUNT) FROM orders ord INNER JOIN customer cust ON cust.CUST_CODE = ord.CUST_CODE GROUP BY ord.CUST_CODE ORDER BY SUM(ord.ORD_AMOUNT) DESC;
++-----------+-------------+-------------------------------------+------------+---------------------+
+| CUST_CODE | CUST_NAME   | CUST_CITY                           | ORD_DATE   | SUM(ord.ORD_AMOUNT) |
++-----------+-------------+-------------------------------------+------------+---------------------+
+| C00007    | Ramanathan  | Chennai                             | 2008-08-30 |            10500.00 |
+| C00013    | Holmes      | London                              | 2008-02-08 |             6000.00 |
+| C00008    | Karolina    | Torento                             | 2008-09-23 |             5500.00 |
+| C00009    | Ramesh      | Mumbai                              | 2008-07-20 |             5200.00 |
+| C00022    | Avinash     | Mumbai                              | 2008-06-10 |             5000.00 |
+| C00025    | Ravindran   | Bangalore                           | 2008-07-30 |             5000.00 |
+| C00004    | Winston     | Brisban                             | 2008-09-25 |             4200.00 |
+| C00015    | Stuart      | London                              | 2008-01-08 |             3500.00 |
+| C00002    | Bolt        | New York                            | 2008-08-15 |             3500.00 |
+| C00011    | Sundariya   | Chennai                             | 2008-07-30 |             3500.00 |
+| C00019    | Yearannaidu | Chennai                             | 2008-04-15 |             3000.00 |
+| C00001    | Micheal     | New York                            | 2008-07-15 |             3000.00 |
+| C00012    | Steven      | San Jose                            | 2008-05-25 |             2900.00 |
+| C00003    | Martin      | Torento                             | 2008-09-16 |             2500.00 |
+| C00005    | Sasikant    | Mumbai                              | 2008-04-20 |             2500.00 |
+| C00024    | Cook        | London                              | 2008-07-20 |             2500.00 |
+| C00016    | Venkatpati  | Bangalore                           | 2008-05-30 |             2000.00 |
+| C00018    | Fleming     | Brisban                             | 2008-10-10 |             2000.00 |
+| C00021    | Jacks       | Brisban                             | 2008-05-15 |             1500.00 |
+| C00006    | Shilton     | Torento                             | 2008-03-13 |             1500.00 |
+| C00020    | Albert      | New York                            | 2008-07-10 |             1000.00 |
+| C00014    | Rangarappa  | Bangalore                           | 2008-10-20 |              800.00 |
+| C00023    | Karl        | London                              | 2008-07-20 |              500.00 |
+| C00010    | Charles     | Hampshair                           | 2008-07-13 |              500.00 |
+| C00017    | Srinivas    | Bangalore                           | 2008-06-20 |              500.00 |
++-----------+-------------+-------------------------------------+------------+---------------------+
+25 rows in set (0.00 sec)
+
+mysql> SELECT cust.CUST_CODE, cust.CUST_NAME, cust.CUST_CITY, ord.ORD_DATE, SUM(ord.ORD_AMOUNT) AS TotalAmount FROM orders or
+d INNER JOIN customer cust ON cust.CUST_CODE = ord.CUST_CODE GROUP BY ord.CUST_CODE ORDER BY TotalAmount DESC;
++-----------+-------------+-------------------------------------+------------+-------------+
+| CUST_CODE | CUST_NAME   | CUST_CITY                           | ORD_DATE   | TotalAmount |
++-----------+-------------+-------------------------------------+------------+-------------+
+| C00007    | Ramanathan  | Chennai                             | 2008-08-30 |    10500.00 |
+| C00013    | Holmes      | London                              | 2008-02-08 |     6000.00 |
+| C00008    | Karolina    | Torento                             | 2008-09-23 |     5500.00 |
+| C00009    | Ramesh      | Mumbai                              | 2008-07-20 |     5200.00 |
+| C00022    | Avinash     | Mumbai                              | 2008-06-10 |     5000.00 |
+| C00025    | Ravindran   | Bangalore                           | 2008-07-30 |     5000.00 |
+| C00004    | Winston     | Brisban                             | 2008-09-25 |     4200.00 |
+| C00015    | Stuart      | London                              | 2008-01-08 |     3500.00 |
+| C00002    | Bolt        | New York                            | 2008-08-15 |     3500.00 |
+| C00011    | Sundariya   | Chennai                             | 2008-07-30 |     3500.00 |
+| C00019    | Yearannaidu | Chennai                             | 2008-04-15 |     3000.00 |
+| C00001    | Micheal     | New York                            | 2008-07-15 |     3000.00 |
+| C00012    | Steven      | San Jose                            | 2008-05-25 |     2900.00 |
+| C00003    | Martin      | Torento                             | 2008-09-16 |     2500.00 |
+| C00005    | Sasikant    | Mumbai                              | 2008-04-20 |     2500.00 |
+| C00024    | Cook        | London                              | 2008-07-20 |     2500.00 |
+| C00016    | Venkatpati  | Bangalore                           | 2008-05-30 |     2000.00 |
+| C00018    | Fleming     | Brisban                             | 2008-10-10 |     2000.00 |
+| C00021    | Jacks       | Brisban                             | 2008-05-15 |     1500.00 |
+| C00006    | Shilton     | Torento                             | 2008-03-13 |     1500.00 |
+| C00020    | Albert      | New York                            | 2008-07-10 |     1000.00 |
+| C00014    | Rangarappa  | Bangalore                           | 2008-10-20 |      800.00 |
+| C00023    | Karl        | London                              | 2008-07-20 |      500.00 |
+| C00010    | Charles     | Hampshair                           | 2008-07-13 |      500.00 |
+| C00017    | Srinivas    | Bangalore                           | 2008-06-20 |      500.00 |
++-----------+-------------+-------------------------------------+------------+-------------+
+25 rows in set (0.00 sec)
