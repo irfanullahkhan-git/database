@@ -1,0 +1,45 @@
+CREATE TABLE customers(
+	id INT PRIMARY KEY AUTO_INCREMENT,
+	NAME VARCHAR(200),
+	email VARCHAR(200),
+	phone VARCHAR (20),
+	address TEXT
+);
+	
+CREATE TABLE orders(
+	id INT PRIMARY KEY AUTO_INCREMENT,
+	order_date DATE,
+	customer_id INT,
+	order_status VARCHAR(30)
+);
+
+CREATE TABLE books(
+	id INT PRIMARY KEY AUTO_INCREMENT,
+	title VARCHAR(200),
+	publication_year INT,
+	price INT,
+	genre VARCHAR(100),
+	publisher_id INT,
+	stock_quantity INT
+);
+
+CREATE TABLE `authors`( id INT PRIMARY KEY AUTO_INCREMENT, `name` VARCHAR(200), biography TEXT ); 
+CREATE TABLE `book_authors`( id INT PRIMARY KEY AUTO_INCREMENT, book_id INT, author_id INT ); 
+CREATE TABLE `publishers`( id INT PRIMARY KEY AUTO_INCREMENT, `name` VARCHAR(200), contact_info TEXT ); 
+
+
+CREATE TABLE `order_details`(
+	id INT PRIMARY KEY AUTO_INCREMENT,
+	order_id INT,
+	book_id INT,
+	quantity INT
+	);
+	
+CREATE TABLE `reviews`(
+	id INT PRIMARY KEY AUTO_INCREMENT,
+	customer_id INT,
+	book_id INT,
+	rating INT,
+	comments TEXT,
+	date_time DATETIME
+);
